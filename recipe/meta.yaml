@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/wms-tile-get-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/wms-tile-get-{{ version }}.tar.gz
   sha256: 8a0e56c5def9e9703c1f320980a0b35bb68fbc1d7eb359702b951fe35f15d2d8
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - wms-tile-get=scripts.wms_tile_get:main
@@ -20,10 +20,10 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - mercantile
-    - python >=3.6
+    - python >={{ python_min }}
     - requests
     - supermercado
 
@@ -35,6 +35,7 @@ test:
     - wms-tile-get --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: http://github.com/easz/wms-tile-get
